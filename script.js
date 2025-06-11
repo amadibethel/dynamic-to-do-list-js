@@ -1,21 +1,22 @@
-// Wait for the DOM to fully load before running the script
-document.addEventListener('DOMContentLoaded', () => {
-    // Select DOM elements
+// Ensure the DOM is fully loaded before executing any code
+document.addEventListener('DOMContentLoaded', function () {
+    // Select the DOM elements
     const addButton = document.getElementById('add-task-btn');
     const taskInput = document.getElementById('task-input');
     const taskList = document.getElementById('task-list');
 
-    // Function to add a task
+    // Define the function to add a task
     function addTask() {
-        const taskText = taskInput.value.trim(); // Get and trim input value
+        // Get the trimmed value of the input
+        const taskText = taskInput.value.trim();
 
-        // Check if the input is not empty
+        // If the input is empty, alert the user
         if (taskText === '') {
             alert('Please enter a task.');
             return;
         }
 
-        // Create a new list item (li)
+        // Create a new list item and set its text
         const li = document.createElement('li');
         li.textContent = taskText;
 
@@ -24,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         removeButton.textContent = 'Remove';
         removeButton.className = 'remove-btn';
 
-        // Set the onclick event to remove the task
+        // Assign an onclick event to remove the task when clicked
         removeButton.onclick = function () {
             taskList.removeChild(li);
         };
@@ -39,10 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
         taskInput.value = '';
     }
 
-    // Add event listener to the "Add Task" button
+    // Add event listener to the add task button
     addButton.addEventListener('click', addTask);
 
-    // Add event listener to allow adding task on "Enter" key
+    // Allow pressing Enter to add a task
     taskInput.addEventListener('keypress', function (event) {
         if (event.key === 'Enter') {
             addTask();
